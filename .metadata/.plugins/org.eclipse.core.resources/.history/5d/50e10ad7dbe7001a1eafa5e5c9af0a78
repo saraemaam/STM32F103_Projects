@@ -1,0 +1,44 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 26, 2020
+ *      Author: Admin
+ */
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#include "LED_interface.h"
+#include "RCC_interface.h"
+#include "DIO_interface.h"
+#include"SysTick_interface.h"
+
+
+
+void main(void){
+	u8 LedArr[]={LED_1 , LED_2 , LED_3 , LED_4 , LED_5 , LED_6 , LED_7 , LED_8 };
+	/*initialize clock system */
+	RCC_voidInitSysClock();
+	/*Enable GPIOA peripheral on APB2 bus */
+	RCC_voidEnableClock (RCC_APB2 , 2) ;
+
+	while(1){
+		for(u8 i=7 ; i<=0 ;i--){
+			Led_vidTurnOn (LedArr[i]);
+			MSTK_voidDelay_ms(200);
+			Led_vidTurnOff(LedArr[i]);
+			MSTK_voidDelay_ms(200);
+		}
+		/*
+		for(u8 i=0 ; i<=7 ;i++){
+			Led_vidTurnOn (LedArr[i]);
+			STK_voidDelay_us(200000);
+			Led_vidTurnOff(LedArr[i]);
+			STK_voidDelay_us(200000);
+		}
+		*/
+
+	}
+
+
+
+}

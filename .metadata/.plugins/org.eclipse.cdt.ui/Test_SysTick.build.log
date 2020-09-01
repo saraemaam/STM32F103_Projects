@@ -1,0 +1,11 @@
+14:59:08 **** Incremental Build of configuration Debug for project Test_SysTick ****
+make all 
+Invoking: Cross ARM GNU Print Size
+arm-none-eabi-size --format=berkeley "Test_SysTick.elf"
+   text	   data	    bss	    dec	    hex	filename
+   5315	    176	    420	   5911	   1717	Test_SysTick.elf
+Finished building: Test_SysTick.siz
+ 
+
+14:59:10 Build Finished (took 2s.152ms)
+

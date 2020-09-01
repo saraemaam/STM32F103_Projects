@@ -1,0 +1,45 @@
+/*
+ * main.c
+ *
+ *  Created on: Aug 26, 2020
+ *      Author: Admin
+ */
+
+#include "STD_TYPES.h"
+#include "BIT_MATH.h"
+#include "LED_interface.h"
+#include "RCC_interface.h"
+#include "DIO_interface.h"
+#include"SysTick_interface.h"
+
+void main(void){
+	u8 LedArr[]={LED_1 , LED_2 , LED_3 , LED_4 , LED_5 , LED_6 , LED_7 , LED_8 };
+
+	for(u8 i=7 ; i<=0 ;i--){
+		Led_vidTurnOn (LedArr[i]);
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+
+
+	while(1){
+
+
+	}
+
+
+
+}
+
+
+
