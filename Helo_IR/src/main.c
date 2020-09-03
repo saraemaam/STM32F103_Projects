@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Sep 2, 2020
- *      Author: Ahmed
+ *      Author: Sarah Abuzaid
  */
 #include "STD_TYPES.h"
 #include "BIT_MATH.h"
