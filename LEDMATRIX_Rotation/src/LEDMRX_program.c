@@ -9,158 +9,88 @@
 #include "DIO_interface.h"
 #include "STK_interface.h"
 #include"LEDMRX_interface.h"
-#include"LEDMRX_private.h"
 #include"LEDMRX_config.h"
+#include"LEDMRX_private.h"
+
+u8 ColumnArray [16] = {LED_MRX_COL0_PIN, LED_MRX_COL1_PIN ,LED_MRX_COL2_PIN ,LED_MRX_COL3_PIN
+		,LED_MRX_COL4_PIN ,LED_MRX_COL5_PIN ,LED_MRX_COL6_PIN ,LED_MRX_COL7_PIN};
+
+u8 ROWSArray [16] = {LED_MRX_ROW0_PIN , LED_MRX_ROW1_PIN ,LED_MRX_ROW2_PIN ,LED_MRX_ROW3_PIN
+		,LED_MRX_ROW4_PIN,LED_MRX_ROW5_PIN ,LED_MRX_ROW6_PIN,LED_MRX_ROW7_PIN};
+
 
 void HLEDMRX_voidInit(void)
 {
-	MGPIO_voidSetPinDir(LEDMRX_ROW0_PIN ,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW1_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW2_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW3_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW4_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW5_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW6_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_ROW7_PIN,0b0010);
+	for(u8 i =0 ; i< 16 ; ){
+		MGPIO_voidSetPinDir(ROWSArray[i],ROWSArray[i+1],OUTPUT_SPEED_2_MHZ_PP);
+		MGPIO_voidSetPinDir(ColumnArray[i],ColumnArray[i+1],OUTPUT_SPEED_2_MHZ_PP);
+		i+=2;
 
-	MGPIO_voidSetPinDir(LEDMRX_COL0_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL1_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL2_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL3_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL4_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL5_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL6_PIN,0b0010);
-	MGPIO_voidSetPinDir(LEDMRX_COL7_PIN,0b0010);
+	}
 
 }
-
-
 void HLEDMRX_voidDisplay(u8 *Copy_u8Data)
 {
-	while(1){
-     /*Column 0 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[0]);
-	/* Enable Column 0 */
-	MGPIO_voidSetPinVal(LEDMRX_COL0_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 1 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[1]);
-	/* Enable Column 1 */
-	MGPIO_voidSetPinVal(LEDMRX_COL1_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column2 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[2]);
-	/* Enable Column 2 */
-	MGPIO_voidSetPinVal(LEDMRX_COL2_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 3 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[3]);
-	/* Enable Column 3 */
-	MGPIO_voidSetPinVal(LEDMRX_COL3_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 4 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[4]);
-	/* Enable Column 4 */
-	MGPIO_voidSetPinVal(LEDMRX_COL4_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 5 */
-	/* Disable alsl Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[5]);
-	/* Enable Column 5 */
-	MGPIO_voidSetPinVal(LEDMRX_COL5_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 6 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[6]);
-	/* Enable Column 0 */
-	MGPIO_voidSetPinVal(LEDMRX_COL6_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
-	/*Column 7 */
-	/* Disable all Columns */
-	DisableAllCols();
-	//send value
-	SetRowValues(Copy_u8Data[7]);
-	/* Enable Column 7 */
-	MGPIO_voidSetPinVal(LEDMRX_COL7_PIN,LOW);
-	//2.5 msec delay 
-	MSTK_voidSetBusyWait(2500); 
-	
+	u8 j = 0 ;
+	for(u8 i=0 ; i < 8 ; i++){
+		/* Disable all Columns */
+		DisableAllCols();
+		//send value
+		SetRowValues(Copy_u8Data[i]);
+		/* Enable Column  */
+		MGPIO_voidSetPinVal(ColumnArray[j],ColumnArray[j+1], LOW );
+		j+=2 ;
+		//2.5 msec delay
+		MSTK_voidSetBusyWait(2500);
+
 	}
 }
 
-
 static void DisableAllCols(void)
 {
-	/* Disable all Columns */
-		MGPIO_voidSetPinVal(LEDMRX_COL0_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL1_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL2_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL3_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL4_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL5_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL6_PIN,HIGH);
-		MGPIO_voidSetPinVal(LEDMRX_COL7_PIN,HIGH);
+	for(u8 i =0 ; i< 16 ; ){
 
+		/* Disable all Columns */
+		MGPIO_voidSetPinVal(ColumnArray[i],ColumnArray[i+1],HIGH);
+		i+=2;
+	}
 }
 
 static void SetRowValues(u8 Copy_u8Value)
 {
 	u8 Local_u8BIT;
-	Local_u8BIT = GET_BIT(Copy_u8Value,0);
-	MGPIO_voidSetPinVal(LEDMRX_ROW0_PIN,Local_u8BIT);
+	u8 j = 0 ;
+	for(u8 i =0 ; i< 8 ; i++){
+		Local_u8BIT = GET_BIT(Copy_u8Value,i);
+		MGPIO_voidSetPinVal(ROWSArray[j],ROWSArray[j+1],Local_u8BIT);
+		j+=2 ;
+	}
 
-	Local_u8BIT = GET_BIT(Copy_u8Value,1);
-	MGPIO_voidSetPinVal(LEDMRX_ROW1_PIN,Local_u8BIT);
+}
 
-	Local_u8BIT = GET_BIT(Copy_u8Value,2);
-	MGPIO_voidSetPinVal(LEDMRX_ROW2_PIN,Local_u8BIT);
+void HLEDMRX_voidAnimation(u8*Copy_Name)
+{
+while(1){
+		u8 x =0 ;
 
-	Local_u8BIT = GET_BIT(Copy_u8Value,3);
-	MGPIO_voidSetPinVal(LEDMRX_ROW3_PIN,Local_u8BIT);
+		for(u8 i = 0 ; i < 16 ; i++){
+			u8 Copy_u8Data[8]={Copy_Name[i],Copy_Name[i+1],Copy_Name[i+2],Copy_Name[i+3],Copy_Name[i+4],Copy_Name[i+5],Copy_Name[i+6],Copy_Name[i+7]};
 
-	Local_u8BIT = GET_BIT(Copy_u8Value,4);
-	MGPIO_voidSetPinVal(LEDMRX_ROW4_PIN,Local_u8BIT);
-
-	Local_u8BIT = GET_BIT(Copy_u8Value,5);
-	MGPIO_voidSetPinVal(LEDMRX_ROW5_PIN,Local_u8BIT);
-
-	Local_u8BIT = GET_BIT(Copy_u8Value,6);
-	MGPIO_voidSetPinVal(LEDMRX_ROW6_PIN,Local_u8BIT);
-
-	Local_u8BIT = GET_BIT(Copy_u8Value,7);
-	MGPIO_voidSetPinVal(LEDMRX_ROW7_PIN,Local_u8BIT);
+			while (x < 10)
+			{
+				x++ ;
+				for(u8 j =0 ; j<8 ; j++){
+					/* Disable all Columns */
+					DisableAllCols();
+					//send value
+					SetRowValues(Copy_u8Data[j]);
+					/* Enable Column  */
+					MGPIO_voidSetPinVal(ColumnArray[j*2],ColumnArray[j*2 + 1], LOW );
+					//2.5 msec delay
+					MSTK_voidSetBusyWait(2500);
+				}
+			}
+		}
+	}
 
 }

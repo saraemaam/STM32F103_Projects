@@ -9,7 +9,8 @@
 
 void HLEDMRX_voidInit();
 void HLEDMRX_voidDisplay(u8*Copy_Data);
-
+void HLEDMRX_voidAnimation(u8*Copy_Name);
+void HLEDMRX_voidPlayer(u8*Copy_Frame);
 
 
 

@@ -12,7 +12,7 @@
 #include"LEDMRX_interface.h"
 
 void main(void){
-	u8 Arr[8]={0,94,82,82,82,114,0,0};
+	u8 Arr[]={0, 46, 42, 42, 42, 58, 0, 62, 10, 10, 62, 0, 62, 10, 10, 22, 32, 0, 62, 10, 10, 62, 0};
 	/*initialize clock system */
 	RCC_voidInitSysClock();
 	/*Enable GPIOA clock */
@@ -23,12 +23,10 @@ void main(void){
 	MSTK_voidInit();
 	/*initialize led matrix */
 	HLEDMRX_voidInit();
-	/* send data to led matrix */
-	HLEDMRX_voidDisplay(Arr);
 
-	while(1){
 
-HLEDMRX_voidDisplay(Arr);
-	}
+	HLEDMRX_voidAnimation(Arr);
+
+
 }
 
