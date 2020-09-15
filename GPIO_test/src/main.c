@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Aug 13, 2020
- *      Author: Admin
+ *      Author: Sarah Abuzaid
  */
 
 

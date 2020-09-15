@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Aug 14, 2020
- *      Author: Admin
+ *      Author: Sarah Abuzaid
  */
 
 #include "STD_TYPES.h"
